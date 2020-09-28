@@ -1,0 +1,36 @@
+  downloader-mac:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    # TODO: get the release
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+
+    - name: Build with pyinstaller
+      run: |
+        pyinstaller --log-level=DEBUG --clean \
+        --icon "${{ github.workspace}}/build/favicon.icns" \
+        --name hello_world \
+        --exclude-module='FixTk' \
+        --exclude-module='tcl' \
+        --exclude-module='tk' \
+        --exclude-module='_tkinter' \
+        --exclude-module='tkinter' \
+        --exclude-module='Tkinter' \
+        --exclude-module='pytest' \
+        --onefile \
+        -d all --windowed main.py
+
+    - name: Upload the artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: hello_world_macos
+        path: dist
+
+    # TODO: upload the artifact to the release
