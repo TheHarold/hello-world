@@ -39,7 +39,8 @@ jobs:
         --exclude-module='Tkinter' \
         --exclude-module='pytest' \
         --onefile \
-        -d all --windowed main.py
+        --onefile --windowed main.py
+
 
     - name: Upload the artifact
       uses: actions/upload-artifact@v2
