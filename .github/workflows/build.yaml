@@ -42,11 +42,11 @@ jobs:
         --onefile --windowed main.py
 
     - name: Package app
-        run: |
-          hdiutil create \
-                  -fs HFS+ \
-                  -srcfolder "$PWD/hello_world" \
-                  -volname "hello_world_macos" "build/hello_world_macos.dmg"
+      run: |
+         hdiutil create \
+                -fs HFS+ \
+                -srcfolder "$PWD/hello_world" \
+                -volname "hello_world_macos" "build/hello_world_macos.dmg"
 
     - name: Upload the artifact
       uses: actions/upload-artifact@v2
