@@ -28,6 +28,7 @@ jobs:
 
     - name: Build with pyinstaller
       run: |
+        pwd
         pyinstaller --log-level=DEBUG --clean \
         --icon "${{ github.workspace}}/build/favicon.icns" \
         --name hello_world \
